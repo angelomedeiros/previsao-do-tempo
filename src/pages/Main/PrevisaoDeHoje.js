@@ -1,6 +1,6 @@
 import React from 'react';
 
-import fewClouds from '../../assets/few_clouds.png';
+import clouds from '../../assets/clouds.png';
 
 export default () => (
     <div className="previsao-de-hoje">
@@ -13,7 +13,7 @@ export default () => (
             </div>
             <img
                 className="previsao-de-hoje__header--icon"
-                src={fewClouds}
+                src={clouds}
                 alt="previsao"
             />
         </div>
