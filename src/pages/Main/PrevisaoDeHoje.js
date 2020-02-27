@@ -43,7 +43,7 @@ export default () => {
                 <div className="previsao-de-hoje__temperatura">
                     <div className="previsao-de-hoje__temperatura--value">
                         <p>
-                            {previsaoDeHoje.temperature[0].$.value}
+                            {Math.ceil(previsaoDeHoje.temperature[0].$.value)}
                             <span>ºC</span>
                         </p>
                     </div>
