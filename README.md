@@ -1,5 +1,7 @@
 # Projeto previsão do tempo
 
+[DEMO](https://angeloprevisaodotempo.surge.sh/)
+
 -   [x] Implementar a interface da aplicação utilizando React;
 -   [ ] Utilizar a estrutura Redux-Saga para chamadas à API;
 -   [x] Publicar o aplicativo no GitHub e enviar o link do repositório;
@@ -18,3 +20,9 @@
 ## Artefatos
 
 -   Arquivo do insomnia: Insomnia_2020-02-27.json. Contém as requisições utilizadas durante o desenvolvimento;
+
+### Observações
+
+-   Não foi possível seguir a risca o design. A api sugerida só dava direito a previsão dos 5 dias;
+
+-   Ícones. Não foi possível cobrir todas as possibilidades de climas com os 4 ícones fornecidos: cloud, rain, thunderstorm and clear. Seria necessários pelo menos 9 ícones de acordo com a api.
