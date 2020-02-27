@@ -9,7 +9,6 @@ html,
 body,
 #root {
     min-height: 100%;
-    overflow-y: hidden;
 }
 
 input {
@@ -20,11 +19,11 @@ input {
 
 body {
     background: rgb(72, 37, 97);
-    background: linear-gradient(
-        0deg,
-        rgba(72, 37, 97, 1) 0%,
-        rgba(103, 68, 128, 1) 100%
-    );
+    // background: linear-gradient(
+    //     0deg,
+    //     rgba(72, 37, 97, 1) 0%,
+    //     rgba(103, 68, 128, 1) 100%
+    // );
     -webkit-font-smoothing: antialiased !important;
     font-family: 'Poppins';
     color: white;

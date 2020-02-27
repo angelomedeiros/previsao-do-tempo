@@ -16,94 +16,99 @@ export default () => {
         const previsaoDeHoje = previsoes.forecast[0].time[0];
 
         return (
-            <div className="previsao-de-hoje">
-                <div className="previsao-de-hoje__header">
-                    <div className="previsao-de-hoje__header--content">
-                        <p>Today</p>
-                        <p>
-                            <strong>{previsoes.location[0].name}</strong>
-                        </p>
+            <>
+                <div className="elemento-fantastama-da-rprevisao-de-hoje" />
+                <div className="previsao-de-hoje">
+                    <div className="previsao-de-hoje__header">
+                        <div className="previsao-de-hoje__header--content">
+                            <p>Today</p>
+                            <p>
+                                <strong>{previsoes.location[0].name}</strong>
+                            </p>
+                        </div>
+                        <img
+                            className="previsao-de-hoje__header--icon"
+                            src={verificarClimaERetornarIcone(
+                                previsaoDeHoje.symbol[0].$.number
+                            )}
+                            alt="previsao"
+                        />
                     </div>
-                    <img
-                        className="previsao-de-hoje__header--icon"
-                        src={verificarClimaERetornarIcone(
-                            previsaoDeHoje.symbol[0].$.number
-                        )}
-                        alt="previsao"
-                    />
+                    <div className="previsao-de-hoje__temperatura">
+                        <div className="previsao-de-hoje__temperatura--value">
+                            <p>
+                                {Math.round(
+                                    previsaoDeHoje.temperature[0].$.value
+                                )}
+                                <span>ºC</span>
+                            </p>
+                        </div>
+                        <div className="previsao-de-hoje__temperatura--clima-e-data">
+                            <p>{previsaoDeHoje.symbol[0].$.name}</p>
+                            <p>
+                                {moment
+                                    .parseZone(previsaoDeHoje.$.from)
+                                    .utcOffset(
+                                        previsoes.location[0].timezone[0] / 3600
+                                    )
+                                    .format('HH:mm MMM DD')}
+                            </p>
+                        </div>
+                    </div>
+                    <div className="previsao-de-hoje__stat">
+                        <div className="previsao-de-hoje__stat--row">
+                            <p>Wind</p>
+                            <p>
+                                {previsaoDeHoje.windSpeed[0].$.name},{' '}
+                                {previsaoDeHoje.windSpeed[0].$.mps} m/s,{' '}
+                                {previsaoDeHoje.windDirection[0].$.code} (
+                                {previsaoDeHoje.windDirection[0].$.deg})
+                            </p>
+                        </div>
+                        <div className="previsao-de-hoje__stat--row">
+                            <p>Cloudiness</p>
+                            <p>{previsaoDeHoje.clouds[0].$.value}</p>
+                        </div>
+                        <div className="previsao-de-hoje__stat--row">
+                            <p>Pressure</p>
+                            <p>{previsaoDeHoje.pressure[0].$.value} hpa</p>
+                        </div>
+                        <div className="previsao-de-hoje__stat--row">
+                            <p>Humidity</p>
+                            <p>{previsaoDeHoje.humidity[0].$.value}%</p>
+                        </div>
+                        <div className="previsao-de-hoje__stat--row">
+                            <p>Sunrise</p>
+                            <p>
+                                {moment
+                                    .parseZone(previsoes.sun[0].$.rise)
+                                    .utcOffset(
+                                        previsoes.location[0].timezone[0] / 3600
+                                    )
+                                    .format('HH:mm')}
+                            </p>
+                        </div>
+                        <div className="previsao-de-hoje__stat--row">
+                            <p>Sunset</p>
+                            <p>
+                                {moment
+                                    .parseZone(previsoes.sun[0].$.set)
+                                    .utcOffset(
+                                        previsoes.location[0].timezone[0] / 3600
+                                    )
+                                    .format('HH:mm')}
+                            </p>
+                        </div>
+                        <div className="previsao-de-hoje__stat--row">
+                            <p>Geo coords</p>
+                            <p>
+                                [{previsoes.location[0].location[0].$.latitude},{' '}
+                                {previsoes.location[0].location[0].$.longitude}]
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div className="previsao-de-hoje__temperatura">
-                    <div className="previsao-de-hoje__temperatura--value">
-                        <p>
-                            {Math.round(previsaoDeHoje.temperature[0].$.value)}
-                            <span>ºC</span>
-                        </p>
-                    </div>
-                    <div className="previsao-de-hoje__temperatura--clima-e-data">
-                        <p>{previsaoDeHoje.symbol[0].$.name}</p>
-                        <p>
-                            {moment
-                                .parseZone(previsaoDeHoje.$.from)
-                                .utcOffset(
-                                    previsoes.location[0].timezone[0] / 3600
-                                )
-                                .format('HH:mm MMM DD')}
-                        </p>
-                    </div>
-                </div>
-                <div className="previsao-de-hoje__stat">
-                    <div className="previsao-de-hoje__stat--row">
-                        <p>Wind</p>
-                        <p>
-                            {previsaoDeHoje.windSpeed[0].$.name},{' '}
-                            {previsaoDeHoje.windSpeed[0].$.mps} m/s,{' '}
-                            {previsaoDeHoje.windDirection[0].$.code} (
-                            {previsaoDeHoje.windDirection[0].$.deg})
-                        </p>
-                    </div>
-                    <div className="previsao-de-hoje__stat--row">
-                        <p>Cloudiness</p>
-                        <p>{previsaoDeHoje.clouds[0].$.value}</p>
-                    </div>
-                    <div className="previsao-de-hoje__stat--row">
-                        <p>Pressure</p>
-                        <p>{previsaoDeHoje.pressure[0].$.value} hpa</p>
-                    </div>
-                    <div className="previsao-de-hoje__stat--row">
-                        <p>Humidity</p>
-                        <p>{previsaoDeHoje.humidity[0].$.value}%</p>
-                    </div>
-                    <div className="previsao-de-hoje__stat--row">
-                        <p>Sunrise</p>
-                        <p>
-                            {moment
-                                .parseZone(previsoes.sun[0].$.rise)
-                                .utcOffset(
-                                    previsoes.location[0].timezone[0] / 3600
-                                )
-                                .format('HH:mm')}
-                        </p>
-                    </div>
-                    <div className="previsao-de-hoje__stat--row">
-                        <p>Sunset</p>
-                        <p>
-                            {moment
-                                .parseZone(previsoes.sun[0].$.set)
-                                .utcOffset(
-                                    previsoes.location[0].timezone[0] / 3600
-                                )
-                                .format('HH:mm')}
-                        </p>
-                    </div>
-                    <div className="previsao-de-hoje__stat--row">
-                        <p>Geo coords</p>
-                        <p>
-                            [{previsoes.location[0].location[0].$.latitude},{' '}
-                            {previsoes.location[0].location[0].$.longitude}]
-                        </p>
-                    </div>
-                </div>
-            </div>
+            </>
         );
     }
     return null;

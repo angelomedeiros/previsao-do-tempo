@@ -1,9 +1,12 @@
 .main {
     display: flex;
-    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     display: flex;
     align-items: center;
-    overflow-y: hidden;
+}
+
+.elemento-fantastama-do-menu {
+    min-width: 120px;
 }
 
 .menu {
@@ -12,14 +15,15 @@
     justify-content: space-between;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.15);
-    height: calc(100vh - 30px);
+    height: calc(calc(var(--vh, 1vh) * 100) - 30px);
     margin-left: 15px;
     padding-top: 30px;
     padding-bottom: 30px;
     min-width: 120px;
     width: 120px;
     border-radius: 20px;
-    max-height: 95vh;
+
+    position: fixed;
 
     &__logo {
         height: 50px;
@@ -48,13 +52,15 @@
     }
 }
 
+.elemento-fantastama-da-rprevisao-de-hoje {
+    min-width: 300px;
+}
+
 .previsao-dos-ultimos-dias {
-    height: calc(100vh - 30px);
+    height: calc(calc(var(--vh, 1vh) * 100) - 30px);
     margin: 0 60px;
     width: 100%;
-    min-width: 707px;
     padding-top: 80px;
-    max-height: 95vh;
 
     &__header {
         h1 {
@@ -78,12 +84,14 @@
 .previsao-de-hoje {
     background-color: white;
     border-radius: 20px;
-    height: calc(100vh - 30px);
+    height: calc(calc(var(--vh, 1vh) * 100) - 30px);
     margin-right: 15px;
-    min-width: 400px;
-    width: 40%;
+    min-width: 300px;
+    width: 300px;
     color: black;
-    max-height: 95vh;
+
+    position: fixed;
+    right: 0;
 
     &__header {
         display: flex;
