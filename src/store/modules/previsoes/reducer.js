@@ -1,4 +1,4 @@
-export default (state = {}, action) => {
+export default (state = {}, action = { previsoes: {} }) => {
     switch (action.type) {
         case 'GET_PREVISOES':
             return {
