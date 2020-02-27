@@ -26,4 +26,4 @@
 
 -   Não foi possível seguir a risca o design. A api sugerida só dava direito a previsão dos 5 dias;
 
--   Ícones. Não foi possível cobrir todas as possibilidades de climas com os 4 ícones fornecidos: cloud, rain, thunderstorm and clear. Seria necessários pelo menos 9 ícones de acordo com a api.
+-   Ícones. Não foi possível cobrir todas as possibilidades de climas com os 4 ícones fornecidos: cloud, rain, thunderstorm and clear. Seriam necessários pelo menos 9 ícones de acordo com a api.
