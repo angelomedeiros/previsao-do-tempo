@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import moment from 'moment';
+import 'moment/locale/pt-br';
+
+import { parseString } from 'xml2js';
+import * as Actions from '../../store/modules/previsoes/actions';
 
 import search from '../../assets/search.png';
 import clouds from '../../assets/clouds.png';
@@ -8,29 +13,40 @@ import clear from '../../assets/clear.png';
 import rain from '../../assets/rain.png';
 import thunderstorm from '../../assets/thunderstorm.png';
 import loader from '../../assets/loader.svg';
-import 'moment/locale/pt-br';
 
 export default () => {
+    const dispatch = useDispatch();
+
     const [cidade, setCidade] = useState();
     const [loading, setLoading] = useState(false);
     const [previsoes, setPrevisoes] = useState({
-        list: [],
+        forecast: [
+            {
+                time: [],
+            },
+        ],
     });
     const horaUsuario = moment().format('H');
 
-    const verificarClimaERetornarIcone = clima => {
-        switch (clima) {
-            case 'Clouds':
-                return clouds;
-            case 'Clear':
-                return clear;
-            case 'Rain':
-                return rain;
-            case 'Thunderstorm':
-                return thunderstorm;
-            default:
-                return clouds;
+    const verificarClimaERetornarIcone = climaCode => {
+        if (
+            [500, 501, 502, 503, 504, 511, 520, 521, 522, 531].includes(
+                climaCode
+            )
+        ) {
+            return rain;
         }
+        if (climaCode === 800) {
+            return clear;
+        }
+        if (
+            [200, 201, 202, 210, 211, 212, 221, 230, 231, 232].includes(
+                climaCode
+            )
+        ) {
+            return thunderstorm;
+        }
+        return clouds;
     };
 
     const getPrevisoes = async () => {
@@ -42,10 +58,15 @@ export default () => {
                     APPID: '0de7e18f09a5a264fe79cada99777e8c',
                     q: cidade,
                     units: 'metric',
+                    mode: 'xml',
                 },
             }
         );
-        setPrevisoes(data);
+        parseString(data, (err, res) => {
+            console.log(res.weatherdata);
+            setPrevisoes(res.weatherdata);
+            dispatch(Actions.getPrevisoes(res.weatherdata));
+        });
         setLoading(false);
     };
 
@@ -58,38 +79,41 @@ export default () => {
     };
 
     const Cards = () => {
-        return previsoes.list
+        return previsoes.forecast[0].time
             .filter(previsao => {
-                const horaPrevisao = moment(previsao.dt_txt).format('H');
+                const horaPrevisao = moment
+                    .parseZone(previsao.$.from)
+                    .utcOffset(previsoes.location[0].timezone[0] / 3600)
+                    .format('H');
                 const horaDoUsuarioNormalizada = String(
                     horaUsuario - (horaUsuario % 3)
                 );
                 return horaPrevisao === horaDoUsuarioNormalizada;
             })
             .map(previsao => (
-                <div key={previsao.dt} className="card">
+                <div key={previsao.$.from} className="card">
                     <div className="card__header">
                         <img
                             src={verificarClimaERetornarIcone(
-                                previsao.weather[0].main
+                                previsao.symbol[0].$.number
                             )}
                             alt="clima"
                         />
                         <p>
-                            {moment(previsao.dt_txt)
+                            {moment(previsao.$.from)
                                 .format('ddd')
                                 .toUpperCase()}
                         </p>
                     </div>
                     <div className="card__temperatura">
                         <p>
-                            {previsao.main.temp}
+                            {previsao.temperature[0].$.value}
                             <span>ºC</span>
                         </p>
                     </div>
                     <div className="card__stats">
-                        <p>{previsao.wind.speed} m/s</p>
-                        <p>clouds: {previsao.clouds.all}%</p>
+                        <p>{previsao.windSpeed[0].$.mps} m/s</p>
+                        <p>clouds: {previsao.clouds[0].$.all}%</p>
                     </div>
                 </div>
             ));
@@ -116,7 +140,7 @@ export default () => {
                 {loading ? (
                     <img src={loader} alt="loader" style={{ marginTop: 20 }} />
                 ) : (
-                    previsoes.list.length !== 0 && (
+                    previsoes.forecast[0].time.length !== 0 && (
                         <>
                             <h3>Previsão para os próximos 5 dias:</h3>
                             <div className="container">

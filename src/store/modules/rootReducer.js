@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import previsaoDoTempo from './previsaoDoTempo/reducer';
+import previsoes from './previsoes/reducer';
 
 export default combineReducers({
-    previsaoDoTempo,
+    previsoes,
 });
