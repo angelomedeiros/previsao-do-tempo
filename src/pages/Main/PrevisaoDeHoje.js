@@ -25,8 +25,6 @@ export default () => {
             return horaPrevisao === horaDoUsuarioNormalizada;
         })[0];
 
-        console.log(previsaoDeHoje);
-
         return (
             <div className="previsao-de-hoje">
                 <div className="previsao-de-hoje__header">
@@ -85,11 +83,25 @@ export default () => {
                     </div>
                     <div className="previsao-de-hoje__stat--row">
                         <p>Sunrise</p>
-                        <p>{moment(previsoes.sun[0].$.rise).format('HH:mm')}</p>
+                        <p>
+                            {moment
+                                .parseZone(previsoes.sun[0].$.rise)
+                                .utcOffset(
+                                    previsoes.location[0].timezone[0] / 3600
+                                )
+                                .format('HH:mm')}
+                        </p>
                     </div>
                     <div className="previsao-de-hoje__stat--row">
                         <p>Sunset</p>
-                        <p>{moment(previsoes.sun[0].$.set).format('HH:mm')}</p>
+                        <p>
+                            {moment
+                                .parseZone(previsoes.sun[0].$.set)
+                                .utcOffset(
+                                    previsoes.location[0].timezone[0] / 3600
+                                )
+                                .format('HH:mm')}
+                        </p>
                     </div>
                     <div className="previsao-de-hoje__stat--row">
                         <p>Geo coords</p>
