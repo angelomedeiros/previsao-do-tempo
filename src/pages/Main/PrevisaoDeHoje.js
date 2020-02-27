@@ -8,22 +8,12 @@ import { verificarClimaERetornarIcone } from '../../utils/helpers';
 
 export default () => {
     const previsoes = useSelector(state => state.previsoes);
-    const horaUsuario = moment().format('H');
 
     if (
         Object.keys(previsoes).includes('forecast') &&
         previsoes.forecast[0].time.length > 0
     ) {
-        const previsaoDeHoje = previsoes.forecast[0].time.filter(previsao => {
-            const horaPrevisao = moment
-                .parseZone(previsao.$.from)
-                .utcOffset(previsoes.location[0].timezone[0] / 3600)
-                .format('H');
-            const horaDoUsuarioNormalizada = String(
-                horaUsuario - (horaUsuario % 3)
-            );
-            return horaPrevisao === horaDoUsuarioNormalizada;
-        })[0];
+        const previsaoDeHoje = previsoes.forecast[0].time[0];
 
         return (
             <div className="previsao-de-hoje">
@@ -45,7 +35,7 @@ export default () => {
                 <div className="previsao-de-hoje__temperatura">
                     <div className="previsao-de-hoje__temperatura--value">
                         <p>
-                            {Math.ceil(previsaoDeHoje.temperature[0].$.value)}
+                            {Math.round(previsaoDeHoje.temperature[0].$.value)}
                             <span>ºC</span>
                         </p>
                     </div>

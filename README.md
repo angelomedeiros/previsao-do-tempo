@@ -3,7 +3,7 @@
 [DEMO](https://angeloprevisaodotempo.surge.sh/)
 
 -   [x] Implementar a interface da aplicação utilizando React;
--   [ ] Utilizar a estrutura Redux-Saga para chamadas à API;
+-   [x] Utilizar a estrutura Redux-Saga para chamadas à API;
 -   [x] Publicar o aplicativo no GitHub e enviar o link do repositório;
 -   [x] Publicar quaisquer artefatos que você tenha utilizado na implementação deste teste (Postman Collection, features de testes, etc);
 -   [x] Você pode utilizar quaisquer dependências que você tenha conhecimento. Detalhar no README a razão pela qual optou por utilizar a dependência (seja por preferência, conhecimento prévio, etc);
@@ -16,6 +16,7 @@
 -   reactotron-redux, reactotron-react-js, debug do estado da aplicação.
 -   axios, realizar chamadas a api;
 -   eslint-\*, prettier, bibliotecas de padronização de código.
+-   react-toastify, fornece toasts prontos que foram utilizados para exibir um alerta de erro quando não foi encontrada nenhuma cidade na busca
 
 ## Artefatos
 

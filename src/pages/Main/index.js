@@ -1,5 +1,7 @@
 import React from 'react';
+import { ToastContainer } from 'react-toastify';
 
+import 'react-toastify/dist/ReactToastify.css';
 import './style.scss';
 
 import Menu from './Menu';
@@ -12,6 +14,8 @@ export default () => {
             <Menu />
             <PrevisaoDosUltimosCincoDias />
             <PrevisaoDeHoje />
+
+            <ToastContainer autoClose={3000} position="top-center" />
         </div>
     );
 };
