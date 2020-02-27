@@ -12,7 +12,7 @@
 ## Dependências
 
 -   moment.js, usada para manipulação de datas e horas e realizar parses entre timezones;
--   xml2js, inicialmente a integração da api estava sendo através de JSON, porém foi percebido que alguns dados que existiam na interface não eram fornecidos pela api no modo json, apenas no modo XML, essas propriedades eram: 'wind direction name' e 'wind direction code'. Em consequência disso foi substituído o 'switch/case' que fazia a verificação para a correta exibição das figuras, essa verificação utiliza a propriedade 'weather description', mas no modo XML, essa não existia, então foi necessário utilizar os codigos juntametne com um 'if';
+-   xml2js, inicialmente a integração da api estava sendo através de JSON, porém foi percebido que alguns dados que existiam na interface não eram fornecidos pela api no modo json, apenas no modo XML, essas propriedades eram: 'wind direction name' e 'wind direction code'. Em consequência disso foi substituído o 'switch/case' que fazia a verificação para a correta exibição das figuras, essa verificação utilizava a propriedade 'weather description', mas no modo XML, essa não existia, então foi necessário utilizar os codigos do clima (weather) em um 'if';
 -   reactotron-redux, reactotron-react-js, debug do estado da aplicação.
 -   axios, realizar chamadas a api;
 -   eslint-\*, prettier, bibliotecas de padronização de código.
