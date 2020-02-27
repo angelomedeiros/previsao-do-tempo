@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import moment from 'moment';
 import 'moment/locale/pt-br';
 
-import clouds from '../../assets/clouds.png';
+import { verificarClimaERetornarIcone } from '../../utils/helpers';
 
 export default () => {
     const previsoes = useSelector(state => state.previsoes);
@@ -36,7 +36,9 @@ export default () => {
                     </div>
                     <img
                         className="previsao-de-hoje__header--icon"
-                        src={clouds}
+                        src={verificarClimaERetornarIcone(
+                            previsaoDeHoje.symbol[0].$.number
+                        )}
                         alt="previsao"
                     />
                 </div>
