@@ -28,7 +28,7 @@ export default () => {
     const getPrevisoes = async () => {
         setLoading(true);
         const { data } = await axios.get(
-            'http://api.openweathermap.org/data/2.5/forecast',
+            'https://api.openweathermap.org/data/2.5/forecast',
             {
                 params: {
                     APPID: '0de7e18f09a5a264fe79cada99777e8c',
