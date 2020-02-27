@@ -75,14 +75,11 @@ export default () => {
                             )}
                             alt="clima"
                         />
-                        <div>
-                            <p>
-                                {moment(previsao.dt_txt)
-                                    .format('ddd')
-                                    .toUpperCase()}
-                            </p>
-                            <small>{moment().format('HH:mm')}</small>
-                        </div>
+                        <p>
+                            {moment(previsao.dt_txt)
+                                .format('ddd')
+                                .toUpperCase()}
+                        </p>
                     </div>
                     <div className="card__temperatura">
                         <p>
@@ -116,13 +113,17 @@ export default () => {
                 </button>
             </div>
             <div className="previsao-dos-ultimos-dias__section">
-                <h3>Previsão para os próximos 5 dias:</h3>
                 {loading ? (
-                    <img src={loader} alt="laoder" style={{ marginTop: 20 }} />
+                    <img src={loader} alt="loader" style={{ marginTop: 20 }} />
                 ) : (
-                    <div className="container">
-                        <Cards />
-                    </div>
+                    previsoes.list.length !== 0 && (
+                        <>
+                            <h3>Previsão para os próximos 5 dias:</h3>
+                            <div className="container">
+                                <Cards />
+                            </div>
+                        </>
+                    )
                 )}
             </div>
         </div>
